@@ -17,6 +17,11 @@ view: fantasy_rankings {
     sql: ${TABLE}.player_last_name ;;
   }
 
+  dimension: player_name {
+    type: string
+    sql: ${player_first_name} || ' ' || ${player_last_name} ;;
+  }
+
   dimension: ppr {
     type: yesno
     sql: ${TABLE}.ppr ;;
@@ -35,6 +40,28 @@ view: fantasy_rankings {
   dimension: ranking {
     type: number
     sql: ${TABLE}.ranking ;;
+  }
+
+  measure: average_ranking {
+    type: average
+    sql: ${ranking} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: average_draft_pick {
+    type: number
+    sql: floor(${average_ranking}) ;;
+    value_format_name: decimal_1
+  }
+
+  measure: min_draft_pick {
+    type: min
+    sql: ${ranking} ;;
+  }
+
+  measure: max_draft_pick {
+    type: max
+    sql: ${ranking} ;;
   }
 
   measure: count {

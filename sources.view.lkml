@@ -12,8 +12,9 @@ view: sources {
     sql: ${TABLE}.source_name ;;
   }
 
-  measure: count {
-    type: count
+  measure: number_of_analysts{
+    type: count_distinct
+    sql: ${id} ;;
     drill_fields: [id, source_name]
   }
 }
