@@ -23,11 +23,18 @@ explore: fantasy_rankings {
     sql_on: ${fantasy_rankings.rank_source_id} = ${sources.id} ;;
     relationship: one_to_many
   }
-  join: player_stats {
+#   join: player_stats {
+#     type: left_outer
+#     sql_on: ${fantasy_rankings.player_first_name} = ${player_stats.player_first_name}
+#       AND ${fantasy_rankings.player_last_name} = ${player_stats.player_last_name};;
+#     relationship: many_to_many
+#   }
+
+  join: injury_suspension {
     type: left_outer
-    sql_on: ${fantasy_rankings.player_first_name} = ${player_stats.player_first_name}
-      AND ${fantasy_rankings.player_last_name} = ${player_stats.player_last_name};;
-    relationship: many_to_many
+    sql_on: ${fantasy_rankings.player_first_name} = ${injury_suspension.player_first_name}
+      AND ${fantasy_rankings.player_last_name} = ${injury_suspension.player_last_name};;
+    relationship: many_to_one
   }
 }
 

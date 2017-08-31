@@ -1,5 +1,5 @@
-view: players {
-  sql_table_name: public.players ;;
+view: injury_suspension {
+  sql_table_name: public.Injury_Suspension ;;
 
   dimension: id {
     primary_key: yes
@@ -7,9 +7,14 @@ view: players {
     sql: ${TABLE}.id ;;
   }
 
-  dimension: bye_week {
+  dimension: is_injured {
     type: string
-    sql: ${TABLE}.bye_week ;;
+    sql: ${TABLE}.is_injured ;;
+  }
+
+  dimension: is_suspended {
+    type: string
+    sql: ${TABLE}.is_suspended ;;
   }
 
   dimension: notes {
@@ -25,21 +30,6 @@ view: players {
   dimension: player_last_name {
     type: string
     sql: ${TABLE}.player_last_name ;;
-  }
-
-  dimension: position {
-    type: string
-    sql: ${TABLE}.position ;;
-  }
-
-  dimension: team {
-    type: string
-    sql: ${TABLE}.team ;;
-  }
-
-  dimension: depth {
-    type: string
-    sql: ${TABLE}.depth ;;
   }
 
   measure: count {
