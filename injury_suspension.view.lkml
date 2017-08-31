@@ -1,5 +1,5 @@
 view: injury_suspension {
-  sql_table_name: public.Injury_Suspension ;;
+  sql_table_name: public.injury_suspension ;;
 
   dimension: id {
     primary_key: yes
